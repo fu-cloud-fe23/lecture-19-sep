@@ -1,0 +1,19 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: zocom
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: upload-images-api
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: eu-north-1
+  httpApi:
+    cors: true
+
+functions:
+  hello:
+    handler: functions/uploadFile/index.handler
+    events:
+      - httpApi:
+          path: /upload
+          method: post
